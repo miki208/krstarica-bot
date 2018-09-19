@@ -22,7 +22,7 @@ class Quiz:
 		self.__usersInputAdapter = FileInputAdapter('users.txt')
 		self.__usersOutputAdapter = FileOutputAdapter('users.txt')
 		self.__state = Quiz.GameState.UNINITIALIZED
-		self.__timer = Timer(30, self.onTimeout)
+		self.__timer = Timer(60, self.onTimeout)
 		self.__users = dict()
 		self.__onlineUsers = []
 		self.__usersCount = 0
@@ -75,7 +75,7 @@ class Quiz:
 		self.__currentPuzzle = self.__shuffleLetters(self.__currentWord)
 		
 		self.setState(Quiz.GameState.NEW_PUZZLE)
-		self.__timer = Timer(30, self.onTimeout)
+		self.__timer = Timer(60, self.onTimeout)
 		self.__timer.start()
 		
 	def onTimeout(self):
@@ -212,7 +212,7 @@ class Quiz:
 				
 			self.observer.context.send_notice(user, '03,15Vaše rešenje je prihvaćeno. Osvojili ste 04' + str(points) + '03 poena.')
 		else:
-			self.observer.context.send_notice(user + '04,15 Vaše rešenje nije prihvaćeno.')
+			self.observer.context.send_notice(user, '04,15 Vaše rešenje nije prihvaćeno.')
 			
 	def startNewRound(self):
 		self.__gamesPlayed = self.__gamesPlayed + 1
